@@ -21,41 +21,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   cargarCategs(): boolean {
-    this.http.get('https://api-erpp.herokuapp.com/api/categoria')
-      .toPromise().then((data: any) => {
-        this.cats = data.categorias;
-      });
     return true;
-  }
-
-  editar(id: string) {
-    this.router.navigate(['editarCategorias', id]);
-  }
-
-
-
-  eliminar(id: string) : boolean {
-    const direccion = 'https://api-erpp.herokuapp.com/api/categoria/' + id;
-    this.http.delete(direccion)
-      .toPromise().then((data: any) => {
-        this.cargarCategs();
-      });
-      return true;
-  }
-
-  agregar() {
-    this.http.post('https://api-erpp.herokuapp.com/api/categoria',
-      {
-        'nombre': this.nuevo_nombre
-      }).toPromise().then((data: any) => {
-        this.cancelar();
-        this.cargarCategs();
-      });
-  }
-
-  cancelar():string {
-    this.nuevo_nombre = null;
-    return "Formulario Vacio";
   }
 
 }
